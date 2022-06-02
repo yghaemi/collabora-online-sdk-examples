@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/collaboraUrl', function(req, res) {
-    var collaboraOnlineHost = req.query.server;
+    var collaboraOnlineHost = "https://editor.antecedentwriting.com/";
     var httpClient = collaboraOnlineHost.startsWith('https') ? https : http;
     var data = '';
     var request = httpClient.get(collaboraOnlineHost + '/hosting/discovery', function(response) {
@@ -38,7 +38,7 @@ router.get('/collaboraUrl', function(req, res) {
                 console.log(err);
                 return;
             }
-            var mimeType = 'text/plain';
+            var mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
             var nodes = xpath.select("/wopi-discovery/net-zone/app[@name='" + mimeType + "']/action", doc);
             if (!nodes || nodes.length !== 1) {
                 err = 'The requested mime type is not handled'

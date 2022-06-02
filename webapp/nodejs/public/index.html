@@ -27,12 +27,12 @@
 
 <script type="text/javascript">
 
-var locationOrigin = window.location.origin;
+var locationOrigin = "https://wopi.antecedentwriting.com";
 var scheme = locationOrigin.startsWith('https') ? 'https' : 'http';
 
 $("#collabora-online-server-form").submit(function(event) {
   event.preventDefault();
-  var wopiClientHost = $("#collabora-online-server").val();
+  var wopiClientHost = "https://wopi.antecedentwriting.com";
   if (!wopiClientHost) {
     alert('No server address entered');
     return;
@@ -45,12 +45,13 @@ $("#collabora-online-server-form").submit(function(event) {
     alert('Collabora Online server address scheme does not match the current page url scheme');
     return;
   }
-  var wopiSrc = locationOrigin + '/wopi/files/1';
+  var wopiSrc = locationOrigin + '/wopi/files/100';
   $.getJSON("/collaboraUrl?server=" + wopiClientHost)
     .done(function( resp ) {
       var wopiClientUrl = resp['url'];
       var accessToken =  resp['token'];
       var wopiUrl = wopiClientUrl + 'WOPISrc=' + wopiSrc;
+      console.log(wopiUrl);
       $('#collabora-submit-form').attr('action', wopiUrl)
       $('#access-token').attr('value', accessToken);
       $('#collabora-submit-form').submit();

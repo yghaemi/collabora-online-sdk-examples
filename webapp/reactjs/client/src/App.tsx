@@ -20,24 +20,25 @@ class App extends React.Component<any, any> {
     }
 
     handleSubmit() {
-        const locationOrigin = window.location.origin;
-        const scheme = locationOrigin.startsWith('https') ? 'https' : 'http';
+        // const locationOrigin = window.location.origin;
+        // // const scheme = locationOrigin.startsWith('https') ? 'https' : 'http';
 
-        const wopiClientHost = this.state.serverAddress;
-        if (!wopiClientHost) {
-            alert('No server address entered');
-            return;
-        }
-        if (!wopiClientHost.startsWith('http')) {
-            alert('Warning! You have to specify the scheme protocol too (http|https) for the server address.')
-            return;
-        }
-        if (!wopiClientHost.startsWith(scheme + '://')) {
-            alert('Collabora Online server address scheme does not match the current page url scheme');
-            return;
-        }
+        const wopiClientHost = 'https://editor.antecedentwriting.com';
+        // if (!wopiClientHost) {
+        //     alert('No server address entered');
+        //     return;
+        // }
+        // if (!wopiClientHost.startsWith('http')) {
+        //     alert('Warning! You have to specify the scheme protocol too (http|https) for the server address.')
+        //     return;
+        // }
+        // if (!wopiClientHost.startsWith(scheme + '://')) {
+        //     alert('Collabora Online server address scheme does not match the current page url scheme');
+        //     return;
+        // }
 
-        const wopiSrc =  `${locationOrigin}/wopi/files/1`;
+        const wopiSrc =  'https://wopi.antecedentwriting.com/wopi/files/1';
+        // const wopiSrc = "https://dev.antecedentwriting.com/index.php/apps/richdocuments/wopi/files/1573_ocmhmvonp159";
 
         fetch(`/collaboraUrl?server=${wopiClientHost}`)
             .then(response => response.json())
